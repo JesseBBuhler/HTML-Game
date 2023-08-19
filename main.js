@@ -1,24 +1,41 @@
-let c = document.getElementById("myCanvas");
-let ctx = c.getContext("2d");
+let canvas = document.getElementById("myCanvas");
+let context = canvas.getContext("2d");
 
 const drawLine = () => {
-  ctx.moveTo(0, 0);
-  ctx.lineTo(200, 100);
-  ctx.stroke();
+  context.moveTo(0, 0);
+  context.lineTo(200, 100);
+  context.stroke();
 };
 
-const drawOtherLine = () => {
-  ctx.moveTo(0, 100);
-  ctx.lineTo(200, 0);
-  ctx.stroke();
+const drawCircle = () => {
+  context.beginPath();
+  context.arc(95, 50, 40, 0, 2 * Math.PI);
+  context.stroke();
+};
+
+const drawText = () => {
+  context.font = "30px Arial";
+  context.fillText("Hello World", 10, 50);
+};
+
+const clearCanvas = () => {
+  context.clearRect(0, 0, canvas.width, canvas.height);
 };
 
 document.body.onkeyup = function (e) {
-  if (e.key == " " || e.code == "Space" || e.keyCode == 32) {
+  if (e.key == " ") {
+    clearCanvas();
+  }
+
+  if (e.key == "l") {
     drawLine();
   }
 
-  if (e.key == "f" || e.code == "f" || e.keyCode == 70) {
-    drawOtherLine();
+  if (e.key == "c") {
+    drawCircle();
+  }
+
+  if (e.key == "t") {
+    drawText();
   }
 };
